@@ -1,43 +1,45 @@
-# redeem — čistá reštartovaná relácia pre Claude Code
+# claude-plugins
 
-`/redeem` nahradí aktuálnu reláciu v Claude Code (desktopová aplikácia Claude) novou, čistou reláciou:
+Plugins for [Claude Code](https://code.claude.com).
 
-1. napíše podrobný handoff (čo je hotové, čo je otvorené, rozhodnutia, cesty) do `~/.claude/handoffs/`,
-2. spustí novú reláciu s rovnakým názvom, skupinou a pripnutím v bočnom paneli,
-3. nová relácia si handoff prečíta a po tvojej prvej správe starú reláciu zmaže (aplikácia sa pýta na potvrdenie).
+## redeem
 
-Výsledok: menší kontext → menej tokenov na správu a menej zmätku v dlhých reláciách.
+`/redeem` replaces the current Claude Code session with a fresh one:
 
-**Funguje iba v Claude Code v desktopovej aplikácii Claude** (používa jej nástroje na správu relácií). V termináli `claude` ani na claude.ai nefunguje.
+1. writes a detailed handoff (what is done, what is open, dead ends, decisions, paths) to `~/.claude/handoffs/`,
+2. starts a new session with the same title, sidebar group and pin,
+3. the new session reads the handoff, verifies key facts against the real system, and after your first message deletes the old session (the app asks you to confirm).
 
-## Inštalácia
+Result: a small, clean context, so fewer tokens per message and less drift in long sessions.
 
-Najprv nahraj tento priečinok ako repozitár na GitHub (napr. `bezakfilip/claude-plugins`). Potom v Claude Code:
+**Works only in Claude Code inside the Claude desktop app** (it uses the app's session tools). It does not work in the `claude` terminal CLI or on claude.ai.
+
+## Install
+
+In Claude Code:
 
 ```
 /plugin marketplace add bezakfilip/claude-plugins
-/plugin install redeem@moje-pluginy
+/plugin install redeem@bezakfilip
 ```
 
-Alebo z terminálu:
+Or from a terminal:
 
 ```
 claude plugin marketplace add bezakfilip/claude-plugins
-claude plugin install redeem@moje-pluginy
+claude plugin install redeem@bezakfilip
 ```
 
-Pre súkromný repozitár musí byť Git na danom PC prihlásený na GitHub.
+## Usage
 
-## Použitie
+Type `/redeem` (or `/redeem:redeem` if the short form is not found) in the session you want to refresh. Best used when switching to a new topic, not in the middle of unfinished work.
 
-V relácii, ktorú chceš „prečistiť“, napíš `/redeem` (ak by sa nenašiel, tak `/redeem:redeem`). Najlepšie pri prechode na novú tému, nie uprostred rozrobenej práce.
-
-## Štruktúra
+## Layout
 
 ```
-.claude-plugin/marketplace.json        ← katalóg (marketplace) „moje-pluginy“
+.claude-plugin/marketplace.json           marketplace "bezakfilip"
 plugins/redeem/.claude-plugin/plugin.json
-plugins/redeem/skills/redeem/SKILL.md  ← samotný postup
+plugins/redeem/skills/redeem/SKILL.md     the procedure itself
 ```
 
-Ďalšie pluginy pridáš ako nový priečinok v `plugins/` a záznam v `marketplace.json`.
+To add another plugin, create a folder in `plugins/` and add an entry to `marketplace.json`.
