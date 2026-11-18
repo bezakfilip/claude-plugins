@@ -1,0 +1,6 @@
+{
+  "name": "redeem",
+  "version": "1.1.0",
+  "description": "Replace the current Claude Code desktop session with a fresh one seeded from a handoff: same title, sidebar group and pin; the old session is deleted. Saves tokens and keeps long work from drifting.",
+  "keywords": ["session", "handoff", "context", "tokens"]
+}
