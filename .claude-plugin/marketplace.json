@@ -1,0 +1,17 @@
+{
+  "name": "moje-pluginy",
+  "owner": {
+    "name": "bezakfilip"
+  },
+  "metadata": {
+    "description": "Moje pluginy pre Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "redeem",
+      "source": "./plugins/redeem",
+      "description": "Nahradí aktuálnu reláciu v Claude Code novou, čistou reláciou: napíše handoff, spustí novú reláciu s rovnakým názvom a miestom v bočnom paneli a starú zmaže.",
+      "version": "1.1.0"
+    }
+  ]
+}
